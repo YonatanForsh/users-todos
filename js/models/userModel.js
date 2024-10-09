@@ -1,6 +1,14 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose = require("mongoose");
+//user interface:
+//userName
+//todo interface:
+//tytle
+//user schema:
+//  userName, todointerface[]
+//todo schema
+//exports 
 const userSchema = new mongoose.Schema({
     user_name: {
         type: String,

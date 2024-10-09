@@ -1,31 +1,39 @@
-const mongoose = require("mongoose")
+import mongoose, { Schema, Document, Model } from "mongoose"
 
-const userSchema = new mongoose.Schema({
-    user_name:{
+
+interface User extends Document {
+    user_name: string,
+    todos: [Todo]
+}
+
+
+interface Todo extends Document {
+    tytle: string
+}
+
+const TodoSchema: Schema<Todo> = new Schema<Todo>({
+    tytle: {
         type: String,
-        required: [true, "user name is required"],
-        minlength: [5, "way to short name, 5 letters required"]
-    },
-    password:{
-        type: String,
-        required: [true, "invalid password"]
-    },
-    role:{
-        type: String,
-        enum: ["soldier", "commander"],
-        required: [true, "enter a role"]
-    },
-    area:{
-        type: String,
-        enum: ["center", "north", "south", "west", "east"],
-        required: [true, "enter an area"]   
-    },
-    units:{
-        type: [Number],
-        required: [true, "enter an unit"]
+        required: true
     }
-})
 
-const UserModel = mongoose.model("user", userSchema)
+    }, { timestamps: true }
+)
 
-export default userSchema
+
+const UserSchema: Schema<User> = new Schema<User>({
+    user_name: {
+        type: String,
+        required: true
+    },
+    todos: [TodoSchema]
+
+    }, { timestamps: true }
+)
+
+
+
+
+const UserModel: Model<User> = mongoose.model<User>('user', UserSchema)
+
+export default UserModel

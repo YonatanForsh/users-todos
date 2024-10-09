@@ -3,7 +3,7 @@ import User from "../models/userModel"
 
 
 const createUser = async (user: typeof User) => {
-
+    
 }
 
 
