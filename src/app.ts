@@ -14,7 +14,7 @@ const port = process.env.PORT || 8000
 
 
 app.use(exp.json())
-app.use("user", userRouter)
+app.use("/user", userRouter)
 
 
 
